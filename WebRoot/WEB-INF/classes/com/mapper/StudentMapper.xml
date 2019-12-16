@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.StudentMapper" >
+  <insert id="insert" parameterType="com.bean.Student" >
+    insert into student 
+    values (#{id},#{name},#{sex},#{birthday},#{gradeId},#{score})
+  </insert>
+  <delete id="delete">
+    delete from student
+    where id = #{id}
+  </delete>
+  <update id="update" parameterType="com.bean.Student" >
+    update student
+    set name=#{name},sex=#{sex},birthday=#{birthday},gradeId=#{gradeId},score=#{score}
+    where id = #{id}
+  </update>
+  <select id="selectByPrimaryKey" resultType="com.bean.Student">
+    select * from student
+    where id = #{id}
+  </select>
+  
+  <resultMap type="student" id="stu">
+  	<id column="id" property="id"/>
+  	<result column="name" property="name"/>
+  	<result column="sex" property="sex"/>
+  	<result column="birthday" property="birthday"/>
+  	<result column="gradeid" property="gradeId"/>
+  	<result column="score" property="score"/>
+  	<association property="grade" javaType="grade">
+  		<id column="gid" property="id"/>
+  		<result column="gname" property="name"/>
+  	</association>
+  </resultMap>
+  
+  <select id="findAll" resultMap="stu">
+  	SELECT s.*,g.id as gid, g.name AS gname 
+	FROM student s,Grade g
+	WHERE s.gradeId=g.id
+	AND s.name LIKE concat('%',#{name},'%')
+	limit #{from}, #{pageSize}
+  </select>
+  <select id="selectCount" resultType="int">
+  	SELECT count(1) from student
+  	where name LIKE concat('%',#{name},'%')
+  </select>
+  <select id="selectLastOne" resultMap="stu">
+  	SELECT s.*,g.id as gid, g.name AS gname 
+	FROM student s,Grade g
+	WHERE s.gradeId=g.id
+	 order by id desc limit 1
+  </select>
+  <select id="selectByName" resultType="student">
+  	SELECT * FROM student WHERE NAME=#{name}
+  </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
