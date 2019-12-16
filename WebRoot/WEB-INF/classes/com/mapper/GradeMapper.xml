@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.GradeMapper" >
+  <insert id="insert" parameterType="com.bean.Grade" >
+    insert into grade 
+    values (#{id},#{name})
+  </insert>
+  <delete id="delete">
+    delete from grade
+    where id = #{id}
+  </delete>
+  <update id="update" parameterType="com.bean.Grade" >
+    update grade
+    set name=#{name}
+    where id = #{id}
+  </update>
+  <select id="selectByPrimaryKey" resultType="com.bean.Grade">
+    select * from grade
+    where id = #{id}
+  </select>
+  <select id="findAll" resultType="com.bean.Grade">
+  	SELECT * from grade
+  </select>
+  <select id="selectCount" resultType="int">
+  	SELECT count(1) from grade
+  </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
