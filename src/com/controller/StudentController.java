@@ -35,6 +35,7 @@ public class StudentController {
 		if (name == null) {
 			name = "";
 		}
+		System.out.println("left");
 		System.out.println("right");
 		int pageSize = 3;
 		int from  = (pageIndex-1)*pageSize;

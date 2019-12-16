@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>SSMWeb2</name>
+=======
+	<name>SSMWeb</name>
+>>>>>>> branch 'master' of https://github.com/EvilBaron/TestGit.git
 	<comment></comment>
 	<projects>
 	</projects>
